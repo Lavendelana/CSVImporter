@@ -29,18 +29,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/issuesCountTextView"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="11dp"
-        android:layout_toEndOf="@+id/issuesCountTextView"
-        android:text="" />
+        android:layout_toEndOf="@+id/issuesCountTextView" />
 
     <TextView
         android:id="@+id/dateOfBirthTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/issuesCountValueTextView"
-        android:layout_alignBottom="@+id/issuesCountValueTextView"
-        android:layout_marginEnd="18dp"
-        android:layout_toStartOf="@+id/dateOfBirthValueTextView"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/issuesCountTextView"
+        android:layout_marginTop="12dp"
         android:text="@string/date_of_birth" />
 
     <TextView
@@ -49,6 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/dateOfBirthTextView"
         android:layout_alignBottom="@+id/dateOfBirthTextView"
-        android:layout_alignEnd="@+id/fullNameTextView"
-        android:text="" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/issuesCountValueTextView" />
 </RelativeLayout>
