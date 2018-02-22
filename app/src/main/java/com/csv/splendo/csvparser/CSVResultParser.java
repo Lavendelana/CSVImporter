@@ -4,6 +4,6 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.util.List;
 
-public interface CSVResultParser<T> {
+public interface CsvResultParser<T> {
     List<T> parseCsv(List<CSVRecord> records);
 }

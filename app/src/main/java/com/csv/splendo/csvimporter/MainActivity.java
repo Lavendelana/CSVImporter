@@ -7,16 +7,20 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.csv.splendo.adapters.CSVListAdapter;
-import com.csv.splendo.csvparser.CSVCallback;
-import com.csv.splendo.csvparser.CSVTaskParameters;
-import com.csv.splendo.csvparser.PersonCSVParser;
+import com.csv.splendo.adapters.CsvListAdapter;
+import com.csv.splendo.csvparser.CsvCallback;
+import com.csv.splendo.csvparser.CsvTask;
+import com.csv.splendo.csvparser.CsvTaskParameters;
+import com.csv.splendo.csvparser.PersonCsvParser;
 import com.csv.splendo.models.Person;
 
-import java.io.InputStream;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements CSVCallback<Person> {
+public class MainActivity extends AppCompatActivity implements CsvCallback<Person> {
+
+    CsvTask<Person> task;
+    ProgressBar progressBar;
+    TextView loadingTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,27 +28,40 @@ public class MainActivity extends AppCompatActivity implements CSVCallback<Perso
         setContentView(R.layout.activity_main);
 
         startCsvHandling();
+
+        this.progressBar = findViewById(R.id.csvProgressBar);
+        this.loadingTextView = findViewById(R.id.loadingTextView);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        task.cancel(true);
     }
 
     private void startCsvHandling() {
-        InputStream input = getResources().openRawResource(getResources().getIdentifier("issues", "raw", getPackageName()));
-        PersonCSVParser parser = new PersonCSVParser();
+        PersonCsvParser parser = new PersonCsvParser();
 
-        CSVTask<Person> task = new CSVTask<>(this);
-        task.execute(new CSVTaskParameters<Person>(parser, input));
+        this.task = new CsvTask<>(this);
+        this.task.execute(new CsvTaskParameters<>(parser, R.raw.issues, getResources()));
     }
 
-    public void csvParsingFinished(List<Person> results) {
-        ProgressBar progressBar = findViewById(R.id.csvProgressBar);
-        progressBar.setVisibility(View.GONE);
+    public void onCsvParsingFinished(List<Person> results) {
+        this.progressBar.setVisibility(View.GONE);
+        this.loadingTextView.setVisibility(View.GONE);
 
-        TextView loadingTextView = findViewById(R.id.loadingTextView);
-        loadingTextView.setVisibility(View.GONE);
-
-        CSVListAdapter adapter = new CSVListAdapter(this, results);
+        CsvListAdapter adapter = new CsvListAdapter(this, results);
 
         ListView mainListView = findViewById(R.id.mainListView);
         mainListView.setVisibility(View.VISIBLE);
         mainListView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onCsvParsingFailed() {
+        this.progressBar.setVisibility(View.GONE);
+
+        this.loadingTextView.setText(getText(R.string.csv_error_text));
     }
 }

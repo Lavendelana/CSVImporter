@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.csv.splendo.adapters.CSVListAdapter;
+import com.csv.splendo.adapters.CsvListAdapter;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -46,7 +46,7 @@ public class MainActivityTest {
 
         ListView listViewObject = (ListView) listView;
         ListAdapter adapter = listViewObject.getAdapter();
-        assertThat(adapter, instanceOf(CSVListAdapter.class));
+        assertThat(adapter, instanceOf(CsvListAdapter.class));
         assertThat(adapter.getCount(), greaterThan(0));
     }
 }
