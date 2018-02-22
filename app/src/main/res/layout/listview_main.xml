@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingRight="@dimen/standard_horizontal_margin"
+    android:paddingLeft="@dimen/standard_horizontal_margin"
+    android:paddingTop="@dimen/standard_vertical_margin"
+    android:paddingBottom="@dimen/standard_vertical_margin">
+
+    <TextView
+        android:id="@+id/fullNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/full_name" />
+
+    <TextView
+        android:id="@+id/issuesCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/fullNameTextView"
+        android:layout_below="@+id/fullNameTextView"
+        android:layout_marginTop="11dp"
+        android:text="@string/issues_count" />
+
+    <TextView
+        android:id="@+id/issuesCountValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/issuesCountTextView"
+        android:layout_marginStart="11dp"
+        android:layout_toEndOf="@+id/issuesCountTextView"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/dateOfBirthTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/issuesCountValueTextView"
+        android:layout_alignBottom="@+id/issuesCountValueTextView"
+        android:layout_marginEnd="18dp"
+        android:layout_toStartOf="@+id/dateOfBirthValueTextView"
+        android:text="@string/date_of_birth" />
+
+    <TextView
+        android:id="@+id/dateOfBirthValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dateOfBirthTextView"
+        android:layout_alignBottom="@+id/dateOfBirthTextView"
+        android:layout_alignEnd="@+id/fullNameTextView"
+        android:text="" />
+</RelativeLayout>

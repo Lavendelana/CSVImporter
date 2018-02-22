@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Csv Importer</string>
+    <string name="full_name">Full name</string>
+    <string name="issues_count">Issues count:</string>
+    <string name="date_of_birth">Date of birth:</string>
+    <string name="loading_csv_file">Loading CSV file</string>
+</resources>
